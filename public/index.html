@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nayi News</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    h1 { text-align: center; }
+    ul { list-style-type: none; padding: 0; }
+    li { padding: 8px; border-bottom: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+  <h1>Categories</h1>
+  <ul id="category-list"></ul>
+
+  <script>
+    fetch('/api/categories')
+      .then(response => response.json())
+      .then(data => {
+        const list = document.getElementById('category-list');
+        data.forEach(category => {
+          const listItem = document.createElement('li');
+          listItem.textContent = category.name;
+          list.appendChild(listItem);
+        });
+      });
+  </script>
+</body>
+</html>
